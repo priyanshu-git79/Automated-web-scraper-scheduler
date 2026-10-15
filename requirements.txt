@@ -1,0 +1,6 @@
+
+Flask
+requests
+beautifulsoup4
+APScheduler>=3.10,<4.0
+pytest

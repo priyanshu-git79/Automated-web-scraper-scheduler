@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automated Web Scraper</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>Automated Web Scraper</h1>
+        <p>Collect website data, schedule runs, and export results.</p>
+
+        <section class="status">
+            <h2>Scheduler Status</h2>
+            <p><strong>Last run:</strong> {{ status.last_run }}</p>
+            <p><strong>Latest result:</strong> {{ status.message }}</p>
+            <p><strong>Schedule:</strong> Every 10 minutes</p>
+        </section>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <div class="actions">
+            <form action="{{ url_for('run_now') }}" method="POST">
+                <button type="submit">Run Scraper Now</button>
+            </form>
+
+            <a class="button-link" href="{{ url_for('download_csv') }}">
+                Download CSV
+            </a>
+        </div>
+
+        <h2>Collected Quotes ({{ records|length }})</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quote</th>
+                        <th>Author</th>
+                        <th>Tags</th>
+                        <th>Scraped At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                        <tr>
+                            <td>{{ record.quote }}</td>
+                            <td>{{ record.author }}</td>
+                            <td>{{ record.tags }}</td>
+                            <td>{{ record.scraped_at }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No quotes collected yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Scraping History</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Quotes Found</th>
+                        <th>New Records</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for run in history %}
+                        <tr>
+                            <td>{{ run.run_time }}</td>
+                            <td>{{ run.result }}</td>
+                            <td>{{ run.quotes_found }}</td>
+                            <td>{{ run.records_added }}</td>
+                            <td>{{ run.message }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">No scraping history yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <p class="note">
+            Quotes are saved in CSV. Run history is saved in SQLite.
+        </p>
+    </main>
+</body>
+</html>

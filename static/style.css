@@ -1,0 +1,114 @@
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #f1f5f9;
+    color: #1e293b;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+}
+
+h1 {
+    color: #1d4ed8;
+}
+
+.status {
+    padding: 16px;
+    margin: 20px 0;
+    background: #eff6ff;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+button {
+    padding: 12px 20px;
+    color: white;
+    background: #2563eb;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.message {
+    padding: 12px;
+    background: #dcfce7;
+    border-radius: 6px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+th {
+    background: #f8fafc;
+}
+
+td {
+    overflow-wrap: anywhere;
+}
+
+.note {
+    margin-top: 20px;
+    color: #64748b;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 12px 20px;
+    color: white;
+    background: #0f766e;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.button-link:hover {
+    background: #115e59;
+}
+
+.status {
+    overflow-wrap: anywhere;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 28px;
+}
+
+td {
+    overflow-wrap: anywhere;
+}
